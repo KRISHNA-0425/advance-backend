@@ -1,0 +1,63 @@
+services:
+  nginx:
+    image: nginx
+    ports:
+      - "8000:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+
+  gateway1:
+    build: ./backend/gateway
+    env_file:
+      - ./backend/gateway/.env
+
+    environment:
+      - GATEWAY_NAME="phela_gateway"
+    ports:
+      - "8001:8000"
+
+  gateway2:
+    build: ./backend/gateway
+    env_file:
+      - ./backend/gateway/.env
+
+    environment:
+      - GATEWAY_NAME="dusra_gateway"
+
+    ports:
+      - "8002:8000"
+
+  gateway3:
+    build: ./backend/gateway
+    env_file:
+      - ./backend/gateway/.env
+
+    environment:
+      - GATEWAY_NAME="teesra_gateway"
+    ports:
+      - "8003:8000"
+
+    # services
+
+  auth-service:
+    build: ./backend/services/auth
+    env_file:
+    - ./backend/services/auth/.env
+    ports:
+      - "3000:3000"
+    
+  order-service:
+    build: ./backend/services/order
+    env_file:
+    - ./backend/services/order/.env
+    ports:
+    - "3001:3001"
+    
+  product-service:
+    build: ./backend/services/product
+    env_file:
+    - ./backend/services/product/.env
+    ports:
+    - "3002:3002"
+
+        

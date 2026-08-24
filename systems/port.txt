@@ -1,0 +1,16 @@
+auth - 3000
+order - 3001
+product - 3002
+
+API gateway - 8000
+
+
+new ports - (after horizontal scaling)
+
+gateway1 - 8001
+gateway2 - 8002
+gateway3 - 8003
+
+auth - 3000
+order - 3001
+product - 3002
