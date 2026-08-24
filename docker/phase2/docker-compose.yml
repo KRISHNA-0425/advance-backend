@@ -1,0 +1,19 @@
+services:
+  backend:
+    # use image when we have to use any external image like node, ubuntu etc
+    # use build when we have to use the same iamge as we have created like in backend or in frontend
+    build: ./Backend
+    # port mapping
+    ports:
+      - "3000:3000"
+
+  frontend:
+    build: ./Frontend
+    ports:
+      - 5173:5173
+    command: npm run dev -- --host
+
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
